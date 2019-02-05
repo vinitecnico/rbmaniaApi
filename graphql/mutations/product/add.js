@@ -1,4 +1,3 @@
-const GraphQLInputObjectType = require('graphql').GraphQLInputObjectType;
 const GraphQLNonNull = require('graphql').GraphQLNonNull;
 const GraphQLString = require('graphql').GraphQLString;
 const GraphQLBoolean = require('graphql').GraphQLBoolean;
@@ -6,23 +5,7 @@ const GraphQLInt = require('graphql').GraphQLInt;
 const GraphQLList = require('graphql').GraphQLList;
 const ProductType = require('../../types/product');
 const ProductModel = require('../../../models/product');
-
-const photos = new GraphQLInputObjectType({
-    name: 'photosInput',
-    fields: () => {
-        return {
-            big: {
-                type: GraphQLString
-            },
-            medium: {
-                type: GraphQLString
-            },
-            small: {
-                type: GraphQLString
-            }
-        }
-    }
-});
+const photoInputObject = require('./photoInputObject').photoInputObject;
 
 exports.add = {
     type: ProductType.productType,
@@ -64,7 +47,7 @@ exports.add = {
             type: GraphQLBoolean
         },
         photos: {
-            type: new GraphQLList(photos)
+            type: new GraphQLList(photoInputObject)
         }
     },
     resolve(root, params) {
