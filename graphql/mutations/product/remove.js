@@ -1,20 +1,20 @@
 var GraphQLNonNull = require('graphql').GraphQLNonNull;
 var GraphQLString = require('graphql').GraphQLString;
-var UserType = require('../../types/user');
-var UserModel = require('../../../models/user');
+var ProductType = require('../../types/product');
+var ProductModel = require('../../../models/product');
 
 exports.remove = {
-  type: UserType.userType,
+  type: ProductType.productType,
   args: {
     id: {
       type: new GraphQLNonNull(GraphQLString)
     }
   },
   resolve(root, params) {
-    const removeduser = UserModel.findByIdAndRemove(params.id).exec();
-    if (!removeduser) {
+    const removedProduct = ProductModel.findByIdAndRemove(params.id).exec();
+    if (!removedProduct) {
       throw new Error('Error')
     }
-    return removeduser;
+    return removedProduct;
   }
 }
