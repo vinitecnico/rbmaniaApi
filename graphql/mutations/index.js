@@ -4,6 +4,7 @@ const updateUser = require('./user/update').update;
 const filterUser = require('./user/filter').filter;
 const loginUser = require('./user/login').login;
 const addProduct = require('./product/add').add;
+const updateProduct = require('./product/update').update;
 
 module.exports = {
   addUser,
@@ -11,5 +12,6 @@ module.exports = {
   updateUser,
   filterUser,
   loginUser,
-  addProduct
+  addProduct,
+  updateProduct
 }

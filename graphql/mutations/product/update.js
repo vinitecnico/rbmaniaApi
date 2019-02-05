@@ -1,16 +1,19 @@
-const GraphQLNonNull = require('graphql').GraphQLNonNull;
-const GraphQLString = require('graphql').GraphQLString;
+var GraphQLNonNull = require('graphql').GraphQLNonNull;
+var GraphQLString = require('graphql').GraphQLString;
 const GraphQLBoolean = require('graphql').GraphQLBoolean;
 const GraphQLInt = require('graphql').GraphQLInt;
 const GraphQLList = require('graphql').GraphQLList;
 const photoInputObject = require('./photoInputObject').photoInputObject;
-const ProductType = require('../../types/product');
-const ProductModel = require('../../../models/product');
+var ProductType = require('../../types/product');
+var ProductModel = require('../../../models/product');
 
-
-exports.add = {
+exports.update = {
     type: ProductType.productType,
     args: {
+        id: {
+            name: 'id',
+            type: new GraphQLNonNull(GraphQLString)
+        },
         category: {
             type: new GraphQLNonNull(GraphQLString)
         },
@@ -52,11 +55,11 @@ exports.add = {
         }
     },
     resolve(root, params) {
-        const pModel = new ProductModel(params);
-        const newProduct = pModel.save();
-        if (!newProduct) {
-            throw new Error('Error');
-        }
-        return newProduct;
+        return ProductModel.findByIdAndUpdate(
+            params.id,
+            { $set: params },
+            { new: true }
+        )
+            .catch(err => new Error(err));
     }
 }
