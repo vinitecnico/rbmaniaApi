@@ -6,6 +6,7 @@ const loginUser = require('./user/login').login;
 const addProduct = require('./product/add').add;
 const updateProduct = require('./product/update').update;
 const removeProduct = require('./product/remove').remove;
+const deliveryPrice = require('./postOffice/deliveryPrice').deliveryPrice;
 
 module.exports = {
   addUser,
@@ -15,5 +16,6 @@ module.exports = {
   loginUser,
   addProduct,
   updateProduct,
-  removeProduct
+  removeProduct,
+  deliveryPrice
 }
