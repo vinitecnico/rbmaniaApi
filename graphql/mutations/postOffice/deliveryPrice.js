@@ -13,7 +13,7 @@ exports.deliveryPrice = {
             type: new GraphQLNonNull(GraphQLString)
         },
         totalPrice: {
-            type: new GraphQLNonNull(GraphQLFloat)
+            type: new GraphQLNonNull(GraphQLString)
         }
     },
     resolve(root, params) {
@@ -28,7 +28,7 @@ exports.deliveryPrice = {
             nVlAltura: 11,
             nVlLargura: 14,
             nVlDiametro: 6,
-            nVlValorDeclarado: params.totalPrice
+            nVlValorDeclarado: parseFloat(params.totalPrice)
         };
 
         return correios.calcPreco(args)
