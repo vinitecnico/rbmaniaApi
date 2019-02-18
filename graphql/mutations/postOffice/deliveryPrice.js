@@ -31,7 +31,7 @@ exports.deliveryPrice = {
             nVlValorDeclarado: parseFloat(params.totalPrice)
         };
 
-        return correios.calcPreco(args)
+        return correios.calcPrecoPrazo(args)
             .then(result => {
                 if (result && result.length > 0) {
                     return Q.resolve(result[0]);

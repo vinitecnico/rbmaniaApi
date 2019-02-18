@@ -30,6 +30,9 @@ exports.deliveryPriceType = new GraphQLObjectType({
             },
             ValorValorDeclarado: {
                 type: GraphQLString
+            },
+            PrazoEntrega: {
+                type: GraphQLInt
             }
         }
     }
